@@ -11,6 +11,7 @@ const config = {
   use: {
     browserName: 'chromium',
     headless: false,
+    baseURL: 'https://eventhub.rahulshettyacademy.com',
     viewport: { width: 1280, height: 720 },
     ignoreHTTPSErrors: true,
     video: 'off',
