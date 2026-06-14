@@ -7,10 +7,6 @@ const config = {
   expect: {
     timeout: 4000, 
   },
-  retries : 0, // retry failed test twice
-  projects:[
-    {
-  name:     'chromium',
   use: {
     browserName: 'chromium',
     headless: false,
@@ -22,22 +18,37 @@ const config = {
     trace : 'on'
 
   },
-},
-{
-  name: 'firefox',
-  use: {
-    browserName: 'firefox',
-    headless: false,
-    baseURL: 'https://eventhub.rahulshettyacademy.com',
-    viewport: { width: 1280, height: 720 },
-    ignoreHTTPSErrors: true,
-    video: 'off',
-    screenshot : 'only-on-failure',
-    trace : 'on'
+//   retries : 0, // retry failed test twice
+//   projects:[
+//     {
+//   name:     'chromium',
+//   use: {
+//     browserName: 'chromium',
+//     headless: false,
+//     baseURL: 'https://eventhub.rahulshettyacademy.com',
+//     viewport: { width: 1280, height: 720 },
+//     ignoreHTTPSErrors: true,
+//     video: 'off',
+//     screenshot : 'only-on-failure',
+//     trace : 'on'
 
-  },
-}
-]
+//   },
+// },
+// {
+//   name: 'firefox',
+//   use: {
+//     browserName: 'firefox',
+//     headless: false,
+//     baseURL: 'https://eventhub.rahulshettyacademy.com',
+//     viewport: { width: 1280, height: 720 },
+//     ignoreHTTPSErrors: true,
+//     video: 'off',
+//     screenshot : 'only-on-failure',
+//     trace : 'on'
+
+//   },
+// }
+// ]
 };
 
 module.exports = config;
