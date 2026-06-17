@@ -1,6 +1,7 @@
 const { LoginPage } = require('./LoginPage');
 const { DashboardPage } = require('./DashboardPage');
 const { EventPage } = require('./EventPage');
+const { BookingPage } = require('./BookingPage');
 
 
 class POManager
@@ -11,6 +12,7 @@ constructor(page)
     this.loginPage = new LoginPage(this.page);
     this.dashboardPage = new DashboardPage(this.page);
     this.eventPage = new EventPage(this.page);
+    this.bookingPage = new BookingPage(this.page);
 }
 
 getLoginPage()
@@ -26,6 +28,11 @@ getEventPage()
 getDashboardPage()
 {
     return this.dashboardPage;
+}
+
+getBookingPage()
+{
+    return this.bookingPage;
 }
 
 }
