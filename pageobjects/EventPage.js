@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+
 class EventPage {
   constructor(page) {
     this.page = page;
@@ -6,9 +7,12 @@ class EventPage {
     this.search_event_identifier = page.getByPlaceholder("Search events, venues…");
     this.categoryDropdown = page.locator("select").nth(0);
     this.cityDropdown = page.locator("select").nth(1);
-    this.cards = page.locator('[data-testid="event-card"]');
-    this.bookEvent_Button = page.locator("#book-now-btn");
+    this.cards = page.locator('[data-testid="event-card"]').first();
+    this.bookEvent_Button = this.cards.getByTestId("book-now-btn");
+
+    
     this.addButtonButton = page.getByRole('button',{name:'Add New Event'});
+   // this.eventName = page.locator('span',{hastext:location});
   }
 
   async assertEventPageVisible() {
@@ -33,12 +37,13 @@ class EventPage {
     };
   }
 
-  async bookEventButtonClick() {
-    await this.bookEvent_Button.click();
-  }
-
     async assertEventPageLocatorVisible() {
     await expect(this.addButtonButton).toBeVisible();
   }
+
+  async bookEventButtonClick(){
+    await this.bookEvent_Button.click();
+  }
+
 }
 module.exports = { EventPage };

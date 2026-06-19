@@ -1,17 +1,14 @@
-const {test, expect} = require('@playwright/test');
-class DashboardPage
+const { test, expect } = require('@playwright/test');
 
-{
+class DashboardPage {
 
-    constructor(page)
-    {
+    constructor(page) {
         this.page = page;
-        this.browseEvent_Button =  page.getByText('Browse Events').first();
+        this.browseEvent_Button = page.getByText('Browse Events').first();
     }
 
-    async clickOnBookEvent()
-    {
+    async clickOnBookEvent() {
         await this.browseEvent_Button.click();
     }
 }
-module.exports ={ DashboardPage };
+module.exports = { DashboardPage };

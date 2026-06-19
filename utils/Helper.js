@@ -1,4 +1,5 @@
-const{POManager} = require("../pageobjects/POManager")
+const { POManager } = require("../pageobjects/POManager")
+const { expect,test } = require('@playwright/test');
 
 // login helper
 async function login(page, email, password) {
@@ -19,6 +20,7 @@ async function createBookingFromFilters(page, { searchTerm, categoryValue, cityN
   await eventPage.searchAndFilterEvents({ searchTerm, categoryValue, cityName });
   const eventTitle = await eventPage.cards.first().locator('h3').textContent();
   await eventPage.assertEventPageLocatorVisible();
+  
   await eventPage.bookEventButtonClick();
 
   // Fill booking details
@@ -35,4 +37,15 @@ async function createBookingFromFilters(page, { searchTerm, categoryValue, cityN
   };
 }
 
-module.exports = { login, createBookingFromFilters };
+function getBookingDivByRef(page, refValue) {
+  return page.locator('div').filter({ has: page.locator('span', { hasText: refValue }) });
+}
+
+async function findBookingCardByRef(page, refValue) {
+  const bookingDiv = getBookingDivByRef(page, refValue);
+  await expect(bookingDiv).toBeVisible();
+
+}
+
+
+module.exports = { login, createBookingFromFilters, findBookingCardByRef};

@@ -1,4 +1,5 @@
 const {test, expect} = require('@playwright/test');
+
 class BookingPage {
   constructor(page) {
     this.page = page;
@@ -11,9 +12,18 @@ class BookingPage {
     this.confirmBookingBtn = page.getByRole('button',{name:'Confirm Booking'});
     this.ticketIncrementer = page.getByRole('button',{name:'+'});
     this.ticketDecrementer = page.getByRole('button',{name:'-'});
+    this.bookingConfirmationMessage = page.locator('p',{hasText:'Your tickets are reserved.'})
+    this.MyBookingTabLink = page.locator("#nav-bookings");
+    this.pageIdentiferBooking = page.getByRole('heading',{level:2,name:'Book Tickets'});
   }
 
+async assertFormVisibility()
+{
+    await expect(this.pageIdentiferBooking).toBeVisible();
+}
+
   async setBookingDetails(bookingDetails) {
+   // await this.assertFormVisibility();
     await this.enterUserNameTextBox.fill(bookingDetails.UserName);
     await this.enterEmailTextBox.fill(bookingDetails.UserEmail);
     await this.enterMobileNoTextBox.fill(bookingDetails.UserPhone);
@@ -32,6 +42,7 @@ class BookingPage {
 
     await expect(this.confirmBookingBtn).toBeEnabled();
     await this.confirmBookingBtn.click();
+    await expect(this.bookingConfirmationMessage).toBeVisible();
   }
 
   async getBookDetails() {
@@ -46,5 +57,12 @@ class BookingPage {
   async getBookrefid() {
     return (await this.bookingRefValue.textContent()).trim();
   }
+
+  async MyBookingEventClick() {
+    await this.MyBookingTabLink.click();
+
+  }
+
+
 }
 module.exports = { BookingPage };
