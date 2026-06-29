@@ -1,6 +1,9 @@
 const{test,expect} =require('@playwright/test')
 const{POManager} = require("../pageobjects/POManager")
 const { login, findBookingCardByRef,patchBookingDetail,patchBookingsList} = require("../utils/Helper");
+const { createAuthorizedApiContext,selectBookableEvent,createBooking,lookupBookingByRef} = require("../utils/ApiHelper");
+
+
 
 
 test('Patched booking appears correctly on My Bookings', async ({ page }) => {
