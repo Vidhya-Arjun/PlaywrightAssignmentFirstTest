@@ -15,8 +15,8 @@ test("EventHUB login page loads",async({page})=>
    const email_idfield = page.getByPlaceholder("you@email.com");
    const signInButton = page.getByRole('button',{name:'Sign In'});
 
-   await email_idfield.isVisible();
-   await signInButton.isVisible();
+   await expect(email_idfield).toBeVisible();
+   await expect(signInButton).toBeVisible();
    await page.close();
 })
 
@@ -27,7 +27,7 @@ test("simple login-page test",async({page})=>
     //extract heading tag text
     const heading = await page.locator("h1.text-xl").textContent();
     await expect(page).toHaveURL(/login/);
-    await passwordField.isVisible();
+    await expect(passwordField).toBeVisible();
     const title = await page.title();
     //validate title
     await expect(title).toMatch("EventHub — Discover & Book Events");
