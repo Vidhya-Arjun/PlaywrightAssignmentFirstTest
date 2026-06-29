@@ -4,7 +4,16 @@ const { login, findBookingCardByRef,patchBookingDetail,patchBookingsList} = requ
 
 
 test('Patched booking appears correctly on My Bookings', async ({ page }) => {
-  await login(page, 'testuser@example.com', 'Password123');
+
+ const poManager = new POManager(page);
+  const dashboardPage = poManager.getDashboardPage();
+  const eventPage = poManager.getEventPage();
+  const bookingPage = poManager.getBookingPage();
+
+  await login(page, "academy@gmail.com", "IamBest!2"); 
+  await dashboardPage.clickOnBookEvent();
+  await eventPage.assertEventPageVisible();  
+
 
   const getPatchedState = await patchBookingsList(page);
 
@@ -28,7 +37,13 @@ test('Patched booking appears correctly on My Bookings', async ({ page }) => {
 });
 
 test('Patched detail page matches the list card', async ({ page }) => {
-  await login(page, 'testuser@example.com', 'Password123');
+ 
+  const poManager = new POManager(page);
+  const dashboardPage = poManager.getDashboardPage();
+  const eventPage = poManager.getEventPage();
+  const bookingPage = poManager.getBookingPage();
+
+  await login(page, "academy@gmail.com", "IamBest!2"); 
 
   const getPatchedState = await patchBookingsList(page);
   const patchedBooking = getPatchedState();
